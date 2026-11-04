@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inkbound Rescue</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="top-bar">
+        <div class="brand-wrap">
+          <span class="brand-mark">✦</span>
+          <div>
+            <div class="eyebrow">Toonboom × Procreate</div>
+            <h1>Inkbound Rescue</h1>
+          </div>
+        </div>
+        <div class="hud-panel">
+          <div class="stat"><span>Paint</span><strong id="paintValue">0/6</strong></div>
+          <div class="stat"><span>Time</span><strong id="timeValue">60</strong></div>
+          <div class="stat"><span>Hearts</span><strong id="livesValue">3</strong></div>
+        </div>
+      </div>
+
+      <div class="game-wrap">
+        <canvas id="gameCanvas" width="960" height="540" aria-label="Inkbound Rescue game canvas"></canvas>
+        <div id="overlay" class="overlay visible">
+          <div class="panel">
+            <p class="mini-tag">Adventure sketch</p>
+            <h2 id="overlayTitle">Ready to paint the sky?</h2>
+            <p id="overlayText">Collect the six glowing color shards, dodge the eraser drifters, and save the studio before time runs out.</p>
+            <button id="startButton">Start Run</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls" aria-label="Touch controls">
+        <button data-control="left" aria-label="Move left">◀</button>
+        <button data-control="jump" aria-label="Jump">▲</button>
+        <button data-control="right" aria-label="Move right">▶</button>
+        <p class="key-hint">Move: A / D or ← / → &nbsp; · &nbsp; Jump: W / ↑ / Space</p>
+      </div>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>
