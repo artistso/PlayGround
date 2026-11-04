@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Ink & Bloom</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="game-shell">
+      <div id="hud">
+        <div class="badge">INK & BLOOM</div>
+        <div class="stats">
+          <span id="health">5 ❤️</span>
+          <span id="shards">0 / 5 ✨</span>
+        </div>
+      </div>
+
+      <canvas id="gameCanvas" width="960" height="540" aria-label="Playable game canvas"></canvas>
+
+      <div id="overlay" class="visible">
+        <div class="panel">
+          <p class="eyebrow">Toonboom + Procreate</p>
+          <h1>Ink & Bloom</h1>
+          <p class="story">
+            The paper hero has lost the colors of the valley. Chase the glowing shards,
+            dodge the ink blots, and unlock the portal at the end of the canyon.
+          </p>
+          <ul>
+            <li>Move: A / D or ← / →</li>
+            <li>Jump: W / ↑ / Space</li>
+            <li>Paint blast: J / K / X</li>
+          </ul>
+          <button id="startButton">Start Adventure</button>
+        </div>
+      </div>
+
+      <div id="touch-controls" aria-label="Touch controls">
+        <div class="touch-left">
+          <button data-key="left">◀</button>
+          <button data-key="right">▶</button>
+        </div>
+        <div class="touch-right">
+          <button data-key="jump">▲</button>
+          <button data-key="attack">✦</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>
