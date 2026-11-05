@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#101a16" />
+  <title>Rootbound — tend the living world</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Rootbound home">
+        <span class="brand-mark">✳</span><span>ROOTBOUND</span>
+      </a>
+      <div class="world-label"><span class="live-dot"></span><span>THE FIRST GARDEN</span><span class="separator">/</span><span class="mono" id="clock">DAY 01 · 00:00</span></div>
+      <button class="icon-button" id="helpBtn" aria-label="How to play" title="How to play">?</button>
+    </header>
+
+    <section class="game-layout">
+      <div class="world-frame">
+        <canvas id="world" aria-label="Rootbound game world"></canvas>
+        <div class="world-vignette"></div>
+        <div class="world-caption"><span class="caption-kicker">A WORLD IN THE MAKING</span><span>EVERYTHING BEGINS WITH A ROOT</span></div>
+        <div class="world-controls"><span>DRAG TO MOVE</span><span class="control-dot">·</span><span>SCROLL TO ZOOM</span><span class="control-dot">·</span><span>ESC TO CANCEL</span></div>
+        <div class="toast" id="toast" role="status"></div>
+      </div>
+
+      <aside class="side-panel">
+        <div class="panel-head">
+          <div><p class="eyebrow">A small, stubborn life</p><h1>Tend the<br><em>unknown.</em></h1></div>
+          <span class="chapter-mark">01<br><i>—</i><br>05</span>
+        </div>
+        <p class="intro">Grow a living structure in the void. Every new piece draws the hungry things closer.</p>
+
+        <div class="vitals">
+          <div class="vital-card health-card">
+            <div class="vital-top"><span class="eyebrow">HEARTWOOD</span><span class="vital-value" id="healthText">100</span></div>
+            <div class="meter"><span class="health-fill" id="healthFill"></span></div>
+            <div class="vital-foot"><span>CORE INTEGRITY</span><span id="healthStatus">THRIVING</span></div>
+          </div>
+          <div class="vital-card sap-card">
+            <div class="vital-top"><span class="eyebrow">LUMEN SAP</span><span class="vital-value"><span class="sap-icon">✦</span><span id="sapText">12</span></span></div>
+            <div class="vital-foot"><span>GROWTH RESERVE</span><span id="incomeText">+0.0 / SEC</span></div>
+          </div>
+        </div>
+
+        <div class="wave-card">
+          <div class="wave-top"><div><span class="eyebrow">THE DARK IS LISTENING</span><strong id="waveTitle">QUIET · WAVE 01</strong></div><span class="wave-icon">◉</span></div>
+          <div class="wave-bottom"><span id="waveHint">First arrival in <b>14</b>s</span><button class="summon-btn" id="waveBtn">CALL THEM <span>↗</span></button></div>
+          <div class="wave-progress"><span id="waveProgress"></span></div>
+        </div>
+
+        <div class="build-heading"><div><span class="eyebrow">SHAPE YOUR GARDEN</span><span class="build-note">Choose a form, then place it beside your growth.</span></div><span class="build-count" id="tileCount">01<br><small>TILE</small></span></div>
+        <div class="build-list" id="buildList" role="group" aria-label="Choose a tile to build">
+          <button class="build-option selected" data-type="stem" aria-pressed="true"><span class="tile-symbol stem-symbol">╱</span><span class="tile-info"><strong>Stem</strong><small>Spine of the garden</small></span><span class="tile-cost">✦ 1</span><span class="tile-key">1</span></button>
+          <button class="build-option" data-type="leaf" aria-pressed="false"><span class="tile-symbol leaf-symbol">❧</span><span class="tile-info"><strong>Leaf</strong><small>Gathers living sap</small></span><span class="tile-cost">✦ 2</span><span class="tile-key">2</span></button>
+          <button class="build-option" data-type="root" aria-pressed="false"><span class="tile-symbol root-symbol">⌁</span><span class="tile-info"><strong>Root</strong><small>Holds fast under harm</small></span><span class="tile-cost">✦ 2</span><span class="tile-key">3</span></button>
+          <button class="build-option" data-type="bloom" aria-pressed="false"><span class="tile-symbol bloom-symbol">✳</span><span class="tile-info"><strong>Bloom</strong><small>Strikes the approaching</small></span><span class="tile-cost">✦ 4</span><span class="tile-key">4</span></button>
+          <button class="build-option" data-type="glyph" aria-pressed="false"><span class="tile-symbol glyph-symbol">◇</span><span class="tile-info"><strong>Glyph</strong><small>Softens nearby foes</small></span><span class="tile-cost">✦ 5</span><span class="tile-key">5</span></button>
+        </div>
+
+        <div class="module-strip"><span class="module-icon">✺</span><span><b id="moduleTitle">A seed, alone</b><small id="moduleDesc">Join three or more forms to awaken a living module.</small></span></div>
+        <button class="pause-button" id="pauseBtn"><span>Ⅱ</span> PAUSE GARDEN <kbd>SPACE</kbd></button>
+      </aside>
+    </section>
+
+    <footer class="footer"><span>ROOTBOUND <i>—</i> A WORLD-BUILDING EXPERIMENT</span><span>NO TWO GARDENS GROW ALIKE <b>✳</b></span></footer>
+  </main>
+
+  <div class="modal-backdrop hidden" id="modal">
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <p class="eyebrow" id="modalEyebrow">FIELD NOTES · 01</p>
+      <h2 id="modalTitle">How to grow<br><em>a living world.</em></h2>
+      <div class="modal-copy" id="modalCopy">
+        <p><b>Build outward.</b> Choose a form, then tap any glowing cell touching your garden. Leaves make sap; roots endure; blooms defend; glyphs slow the dark.</p>
+        <p><b>Stay connected.</b> Three touching tiles awaken a module. Let your forms mingle to discover what the garden becomes.</p>
+        <p><b>Hold the heartwood.</b> The dark arrives in five waves. Build before it reaches your core. Drag to explore; use the wheel or pinch to zoom.</p>
+      </div>
+      <button class="primary-button" id="modalAction">BACK TO THE GARDEN <span>↗</span></button>
+    </section>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
